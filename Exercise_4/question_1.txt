@@ -1,0 +1,8 @@
+a. Encapsulation
+Encapsulation is the practice of keeping data and the methods that operate on that data together in one unit while restricting direct access to some details. This helps maintain control and prevent unintended changes.
+b. Client
+A client is a system, program, or device that requests and uses services or resources from another system, often called a server.
+c. Data Attributes
+Data attributes are pieces of information associated with an object. They store values that define the state or characteristics of that object.
+d. Instance
+An instance is a specific, individual occurrence of something created based on a defined model or template.
