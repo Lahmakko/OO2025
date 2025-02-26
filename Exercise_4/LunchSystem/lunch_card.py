@@ -1,4 +1,4 @@
-class LunchCard: 
+class LunchCard:
     def __init__(self, balance: float):
         self.balance = balance
     
@@ -8,10 +8,14 @@ class LunchCard:
     def eat_ordinary(self):
         if self.balance >= 2.95:
             self.balance -= 2.95
+        else:
+            print("Insufficient funds for an ordinary lunch.")
 
     def eat_luxury(self):
         if self.balance >= 5.90:
             self.balance -= 5.90
+        else:
+            print("Insufficient funds for a luxury lunch.")
     
     def deposit_money(self, amount: float):
         if amount < 0:
@@ -23,3 +27,11 @@ class LunchCard:
             self.balance -= amount
             return True
         return False
+    
+    def deposit_money_on_card(self, terminal, amount: float):
+        """Deposit money on the card, and also add the same amount to the terminal funds."""
+        if amount < 0:
+            raise ValueError("You cannot deposit a negative amount.")
+        self.balance += amount
+        terminal.funds += amount
+        print(f"Deposit successful: {amount:.2f} euros")

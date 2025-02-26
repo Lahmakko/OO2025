@@ -17,14 +17,16 @@ if __name__ == "__main__":
     print(f"Peter: {peter_card}")
     print(f"Grace: {grace_card}")
 
-    peter_card.deposit_money(20)
+    # Peter deposits money
+    peter_card.deposit_money_on_card(terminal, 20)
     grace_card.eat_luxury()
     print(f"Peter: {peter_card}")
     print(f"Grace: {grace_card}")
 
+    # Peter eats two ordinary lunches
     peter_card.eat_ordinary()
     peter_card.eat_ordinary()
-    grace_card.deposit_money(50)
+    grace_card.deposit_money_on_card(terminal, 50)
     print(f"Peter: {peter_card}")
     print(f"Grace: {grace_card}")
 
