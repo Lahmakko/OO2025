@@ -1,56 +1,60 @@
+# player.py
 class Player:
+    """
+    Represents a player in the StoneAge world.
+    
+    Attributes:
+        name (str): The name of the player.
+        x (int): The x-coordinate (column) of the player's position.
+        y (int): The y-coordinate (row) of the player's position.
+        inventory (list): A list of items the player has picked up.
+    """
+    
     def __init__(self, name, x, y):
-        """Initializes a player in the StoneAge world with a starting position.
+        """Initializes a player with a name and starting position.
         
         Args:
             name (str): The name of the player.
-            x (int): The starting x-coordinate (column).
-            y (int): The starting y-coordinate (row).
+            x (int): The x-coordinate (column) of the player's starting position.
+            y (int): The y-coordinate (row) of the player's starting position.
         """
         self.name = name
         self.x = x
         self.y = y
-        self.backpack = []
+        self.inventory = []
 
-    def move(self, dx, dy, grid):
-        """Moves the player in the grid by the specified delta values.
+    def move(self, x, y, world):
+        """Moves the player to a new position on the grid.
         
         Args:
-            dx (int): The change in the x-coordinate (horizontal movement).
-            dy (int): The change in the y-coordinate (vertical movement).
-            grid (Grid): The grid in which the player is moving.
-            
+            x (int): The new x-coordinate (column) to move to.
+            y (int): The new y-coordinate (row) to move to.
+            world (World): The world where the player is moving.
+        
         Preconditions:
-            (0 <= x + dx < grid.width) and (0 <= y + dy < grid.height)
+            0 <= x < world.width
+            0 <= y < world.height
         """
-        new_x = self.x + dx
-        new_y = self.y + dy
-
-        # Ensure the new position is within the grid bounds
-        if 0 <= new_x < grid.width and 0 <= new_y < grid.height:
-            self.x = new_x
-            self.y = new_y
-            print(f"{self.name} moved to position ({self.x}, {self.y})")
+        if 0 <= x < world.width and 0 <= y < world.height:
+            self.x = x
+            self.y = y
         else:
-            print(f"{self.name} cannot move outside the grid!")
+            print(f"Invalid position: ({x}, {y})")
 
-    def pick_up_item(self, grid):
-        """Picks up an item from the grid at the player's current position.
+    def pick_up_item(self, world):
+        """Picks up the item at the current position on the grid, if any.
         
         Args:
-            grid (Grid): The grid where the player is picking up the item.
-            
-        Preconditions:
-            The player's current position must contain an item.
+            world (World): The world where the player is interacting with items.
         """
-        item = grid.grid[self.y][self.x]
+        item = world.get_item_at(self.x, self.y)
         if item:
-            self.backpack.append(item)
-            grid.remove_item(self.x, self.y)
-            print(f"{self.name} picked up a {item.name}")
+            self.inventory.append(item)
+            world.remove_item(self.x, self.y)
+            print(f"{self.name} picked up {item.name}.")
         else:
-            print(f"No item at position ({self.x}, {self.y}) to pick up.")
-    
+            print("No item to pick up here.")
+
     def __str__(self):
-        """Returns a string representation of the player."""
-        return f"Player: {self.name}, Position: ({self.x}, {self.y}), Backpack: {', '.join([item.name for item in self.backpack])}"
+        """Returns a string representation of the player's state."""
+        return f"{self.name} (Position: {self.x}, {self.y}, Inventory: {[item.name for item in self.inventory]})"

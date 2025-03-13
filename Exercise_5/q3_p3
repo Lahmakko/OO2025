@@ -1,0 +1,23 @@
+class Item:
+    def __init__(self, name: str, weight: int):
+        self.__name = name
+        self.__weight = weight
+
+    def name(self):
+        return self.__name
+
+    def weight(self):
+        return self.__weight
+
+    def __str__(self):
+        item_word = "item" if self.__weight == 1 else "items"
+        return f"{self.__weight} {item_word} ({self.__weight} g)"
+
+item1 = Item("Book", 200)
+item2 = Item("Phone", 100)
+
+# creates a scenario with multiple items
+items = [item1, item2]
+
+# printing individual items
+print(f"{len(items)} item{'s' if len(items) != 1 else ''} ({sum([item.weight() for item in items])} g)")

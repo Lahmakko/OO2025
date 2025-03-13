@@ -1,3 +1,4 @@
+# item.py
 class Item:
     def __init__(self, name, value):
         """Initializes an item in the StoneAge world.

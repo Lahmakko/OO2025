@@ -1,0 +1,50 @@
+class Item:
+    def __init__(self, name: str, weight: int):
+        self.__name = name
+        self.__weight = weight
+
+    def name(self):
+        return self.__name
+
+    def weight(self):
+        return self.__weight
+
+    def __str__(self):
+        item_word = "item" if self.__weight == 1 else "items"
+        return f"{self.__name} ({self.__weight} g)"
+
+class Suitcase:
+    def __init__(self, max_weight: int):
+        self.max_weight = max_weight  # maximum weight capacity
+        self.items = []  # list to store the items in the suitcase
+
+    def add_item(self, item: Item):
+        # add the item only if the total weight does not exceed the max weight
+        if self.weight() + item.weight() <= self.max_weight:
+            self.items.append(item)
+        else:
+            print(f"Cannot add {item.name()}! Exceeds weight limit.")
+
+    def print_items(self):
+        for item in self.items:
+            print(item)
+
+    def weight(self):
+        return sum(item.weight() for item in self.items)
+
+
+
+book = Item("ABC Book", 200)
+phone = Item("Nokia 3210", 100)
+brick = Item("Brick", 400)
+
+suitcase = Suitcase(1000)
+suitcase.add_item(book)
+suitcase.add_item(phone)
+suitcase.add_item(brick)
+
+print("The suitcase contains the following items:")
+suitcase.print_items()
+
+combined_weight = suitcase.weight()
+print(f"Combined weight: {combined_weight} g")

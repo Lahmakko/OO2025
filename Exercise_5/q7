@@ -1,0 +1,37 @@
+7. UML Class Diagrams
+
+1. Read through the Geeks for Geeks pages about UML class diagrams
+- I have read and understood the basics of UML class diagrams including classes attributes methods inheritance and relationships
+
+2. Look around you and describe items in an inheritance hierarchy
+- Example a transportation system
+- Base class vehicle
+- Subclasses car bike truck
+
+3. Model these objects as you would use them in a computer application
+- vehicle base class
+  - properties brand model speed
+  - methods start stop accelerate
+- car subclass of vehicle
+  - properties num_doors fuel_type
+  - methods play_music open_trunk
+- bike subclass of vehicle
+  - properties type has_gears
+  - methods ring_bell adjust_seat
+- truck subclass of vehicle
+  - properties load_capacity num_wheels
+  - methods load_cargo unload_cargo
+
+4. Identify polymorphically overridden methods
+- the accelerate method would be overridden in subclasses
+  - car accelerate increases speed based on fuel consumption
+  - bike accelerate increases speed based on pedaling force
+  - truck accelerate increases speed but is limited by load weight
+
+5. Identify completely different properties
+- car num_doors fuel_type
+- bike type has_gears
+- truck load_capacity num_wheels
+
+6. Use UML class diagram to visually represent the structure and relationships
+- created a UML diagram using draw io to represent the vehicle hierarchy

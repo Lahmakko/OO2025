@@ -1,0 +1,133 @@
+class Property:
+    def __init__(self, square_feet, num_bedrooms, num_bathrooms):
+        self.square_feet = square_feet
+        self.num_bedrooms = num_bedrooms
+        self.num_bathrooms = num_bathrooms
+
+    def display(self):
+        print("PROPERTY DETAILS")
+        print("=========================")
+        print(f"square feet: {self.square_feet}")
+        print(f"bedrooms: {self.num_bedrooms}")
+        print(f"bathrooms: {self.num_bathrooms}")
+
+    @classmethod
+    def prompt_init(cls):
+        square_feet = float(input("Enter the square feet: "))
+        num_bedrooms = int(input("Enter number of bedrooms: "))
+        num_bathrooms = int(input("Enter number of bathrooms: "))
+        return {'square_feet': square_feet, 'num_bedrooms': num_bedrooms, 'num_bathrooms': num_bathrooms}
+    
+class Apartment(Property):
+    def __init__(self, square_feet, num_bedrooms, num_bathrooms, balcony, laundry):
+        super().__init__(square_feet, num_bedrooms, num_bathrooms)
+        self.balcony = balcony
+        self.laundry = laundry
+
+    def display(self):
+        super().display()
+        print("APARTMENT DETAILS")
+        print(f"Laundry: {self.laundry}")
+        print(f"Balcony: {self.balcony}")
+
+    @classmethod
+    def prompt_init(cls):
+        parent_init = Property.prompt_init()
+        laundry = input("Does the apartment building have laundry? (yes/no): ").lower()
+        while laundry not in ['yes', 'no']:
+            laundry = input("Please enter 'yes' or 'no': ").lower()
+        balcony = input("Does the property have a balcony? (yes/no): ").lower()
+        while balcony not in ['yes', 'no']:
+            balcony = input("Please enter 'yes' or 'no': ").lower()
+        parent_init.update({'laundry': laundry, 'balcony': balcony})
+        return parent_init
+    
+class House(Property):
+    def __init__(self, square_feet, num_bedrooms, num_bathrooms, num_stories, garage, fenced_yard):
+        super().__init__(square_feet, num_bedrooms, num_bathrooms)
+        self.num_stories = num_stories
+        self.garage = garage
+        self.fenced_yard = fenced_yard
+
+    def display(self):
+        super().display()
+        print("HOUSE DETAILS")
+        print(f"# of stories: {self.num_stories}")
+        print(f"garage: {self.garage}")
+        print(f"fenced yard: {self.fenced_yard}")
+
+    @classmethod
+    def prompt_init(cls):
+        parent_init = Property.prompt_init()
+        fenced_yard = input("Is the yard fenced? (yes/no): ").lower()
+        while fenced_yard not in ['yes', 'no']:
+            fenced_yard = input("Please enter 'yes' or 'no': ").lower()
+        garage = input("Is there a garage? (attached/detached/none): ").lower()
+        while garage not in ['attached', 'detached', 'none']:
+            garage = input("Please enter 'attached', 'detached', or 'none': ").lower()
+        num_stories = int(input("How many stories does the house have? "))
+        parent_init.update({'fenced_yard': fenced_yard, 'garage': garage, 'num_stories': num_stories})
+        return parent_init
+    
+class Purchase:
+    def __init__(self, price, taxes):
+        self.price = price
+        self.taxes = taxes
+
+    def display(self):
+        print("PURCHASE DETAILS")
+        print(f"Selling price: {self.price}")
+        print(f"Estimated taxes: {self.taxes}")
+
+    @classmethod
+    def prompt_init(cls):
+        price = float(input("What is the selling price? "))
+        taxes = float(input("What are the estimated taxes? "))
+        return {'price': price, 'taxes': taxes}
+
+class Rental:
+    def __init__(self, rent, utilities, furnished):
+        self.rent = rent
+        self.utilities = utilities
+        self.furnished = furnished
+
+    def display(self):
+        print("RENTAL DETAILS")
+        print(f"Rent: {self.rent}")
+        print(f"Estimated utilities: {self.utilities}")
+        print(f"Furnished: {self.furnished}")
+
+    @classmethod
+    def prompt_init(cls):
+        rent = float(input("What is the monthly rent? "))
+        utilities = float(input("What are the estimated utilities? "))
+        furnished = input("Is the property furnished? (yes/no): ").lower()
+        while furnished not in ['yes', 'no']:
+            furnished = input("Please enter 'yes' or 'no': ").lower()
+        return {'rent': rent, 'utilities': utilities, 'furnished': furnished}
+    
+if __name__ == "__main__":
+    property_details = Property.prompt_init()
+    print(property_details)
+    property = Property(**property_details)
+    property.display()
+
+    apartment_details = Apartment.prompt_init()
+    print(apartment_details)
+    apartment = Apartment(**apartment_details)
+    apartment.display()
+
+    house_details = House.prompt_init()
+    print(house_details)
+    house = House(**house_details)
+    house.display()
+
+    purchase_details = Purchase.prompt_init()
+    print(purchase_details)
+    purchase = Purchase(**purchase_details)
+    purchase.display()
+
+    rental_details = Rental.prompt_init()
+    print(rental_details)
+    rental = Rental(**rental_details)
+    rental.display()
