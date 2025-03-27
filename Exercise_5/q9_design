@@ -1,0 +1,87 @@
+Design a Library Catalog System
+
+Step 1: Identify Library Items
+	•	Library items may include:
+	•	Book
+	•	Magazine
+	•	DVD
+	•	CD
+	•	eBook
+	•	Audiobook
+
+Step 2: Design the Class Diagram
+
+Base Class: LibraryItem
+	•	Attributes:
+	•	title (string)
+	•	author (string)
+	•	publicationYear (integer)
+	•	itemID (unique identifier)
+	•	status (string; e.g., “available”, “borrowed”)
+	•	Methods:
+	•	displayInfo()
+	•	borrowItem()
+	•	returnItem()
+
+Sub-Classes (each inherits from LibraryItem):
+	1.	Book
+	•	Additional Attributes:
+	•	ISBN (string)
+	•	publisher (string)
+	•	pages (integer)
+	•	edition (string)
+	•	Additional Methods:
+	•	reserveBook()
+	2.	Magazine
+	•	Additional Attributes:
+	•	issueNumber (integer)
+	•	publicationMonth (string)
+	•	Additional Methods:
+	•	getIssueDetails()
+	3.	DVD
+	•	Additional Attributes:
+	•	director (string)
+	•	duration (integer, in minutes)
+	•	rating (string)
+	•	Additional Methods:
+	•	playPreview()
+	4.	CD
+	•	Additional Attributes:
+	•	artist (string)
+	•	duration (integer, in minutes)
+	•	Additional Methods:
+	•	playSample()
+	5.	eBook
+	•	Additional Attributes:
+	•	fileFormat (string; e.g., PDF, EPUB)
+	•	downloadLink (URL)
+	•	Additional Methods:
+	•	openEBook()
+	6.	Audiobook
+	•	Additional Attributes:
+	•	narrator (string)
+	•	audioLength (integer, in minutes)
+	•	Additional Methods:
+	•	playSampleAudio()
+
+Step 3: Define Basic Functions for the Catalog
+	•	Adding Items: A function that creates a new instance of the appropriate LibraryItem subclass and adds it to the catalog.
+	•	Removing Items: A function that removes an item from the catalog based on its itemID.
+	•	Searching for Items: A function that allows users to search for items by title, author, or keywords (with possible filtering by item type).
+	•	Borrowing Items: A function that checks an item’s status, processes the borrow request, and updates the status to “borrowed.”
+	•	Returning Items: A function that processes the return of an item and updates its status to “available.”
+
+Step 4: Draw a Sequence Diagram
+
+Scenario: User borrows an item from the catalog.
+
+Actors: User, Library Catalog System, LibraryItem
+
+Sequence:
+	1.	The User sends a search request (e.g., for a Book).
+	2.	The Library Catalog System retrieves and displays matching search results.
+	3.	The User selects an item to borrow.
+	4.	The Library Catalog System checks the item’s availability.
+	5.	If the item is available, the system processes the borrow request, updates the item’s status to “borrowed,” and confirms the transaction.
+	6.	If the item is not available, the system informs the user.
+(diagram in seperste file q_9_diagram)
