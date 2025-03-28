@@ -1,4 +1,3 @@
-# Tool class (Base class)
 class Tool:
     def __init__(self, manufacturer, model, rpm):
         assert isinstance(manufacturer, str) and len(manufacturer) > 0, "Manufacturer must be a non-empty string"
@@ -9,7 +8,7 @@ class Tool:
         self.__model = model
         self.__rpm = rpm
     
-    # Getter methods for encapsulation
+    # getter methods encapsulation
     def get_manufacturer(self):
         return self.__manufacturer
     
@@ -33,7 +32,6 @@ class Tool:
         self.__rpm = rpm
 
 
-# Drill class (Subclass of Tool)
 class Drill(Tool):
     def __init__(self, manufacturer, model, rpm, max_diameter):
         super().__init__(manufacturer, model, rpm)
@@ -69,20 +67,18 @@ class Drill(Tool):
         print("Detached the bit.")
 
 
-# CordlessDrill class (Subclass of Drill)
 class CordlessDrill(Drill):
     def __init__(self, manufacturer, model, rpm, max_diameter):
         super().__init__(manufacturer, model, rpm, max_diameter)
     
     def attach_bit(self, bit):
-        # Cordless drills only accept bits with a diameter <= 10 mm
+        # cordless drills only accept bits with a diameter <= 10 mm
         if bit.get_diameter() > 10:
             print(f"Cannot attach {bit.get_diameter()} mm bit. Only bits with diameter <= 10 mm can be used with a cordless drill.")
             return
         super().attach_bit(bit)
 
 
-# DrillBit class
 class DrillBit:
     def __init__(self, diameter, rpm_limit):
         assert isinstance(diameter, float) and diameter > 0, "Diameter must be a positive float"
@@ -98,20 +94,16 @@ class DrillBit:
         return self.__rpm_limit
 
 
-# Example Usage
 if __name__ == "__main__":
-    # Create a DrillBit
-    bit1 = DrillBit(8.0, 1500)  # 8 mm diameter, 1500 RPM limit
-    bit2 = DrillBit(12.0, 2000)  # 12 mm diameter, 2000 RPM limit
+    # Create bit
+    bit1 = DrillBit(8.0, 1500)  # 8mm diameter 1500 RPM limit
+    bit2 = DrillBit(12.0, 2000)  # 12mm diameter2000 RPM limit
     
-    # Create a Cordless Drill (max diameter 10 mm)
     cordless_drill = CordlessDrill("Bosch", "Cordless Pro", 1500, 10.0)
-    cordless_drill.attach_bit(bit1)  # Should succeed
-    cordless_drill.attach_bit(bit2)  # Should fail due to diameter being > 10 mm
+    cordless_drill.attach_bit(bit1) 
+    cordless_drill.attach_bit(bit2) 
     
-    # Create a regular Drill (max diameter 15 mm)
     regular_drill = Drill("Makita", "Drill Master", 1800, 15.0)
-    regular_drill.attach_bit(bit2)  # Should succeed as 12 mm bit is within the max diameter
+    regular_drill.attach_bit(bit2)
 
-    # Detach the bit from the regular drill
-    regular_drill.detach_bit()  # Should succeed
+    regular_drill.detach_bit() 
