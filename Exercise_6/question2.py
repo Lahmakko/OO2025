@@ -8,7 +8,11 @@ class Tool:
         self.__model = model
         self.__rpm = rpm
     
+<<<<<<< HEAD
     # getter methods encapsulation
+=======
+    # Getter methods encapsulation
+>>>>>>> 23aa46c (Describe your changes)
     def get_manufacturer(self):
         return self.__manufacturer
     
@@ -18,7 +22,7 @@ class Tool:
     def get_rpm(self):
         return self.__rpm
     
-    # Setter methods for encapsulation
+    # Setter methods encapsulation
     def set_manufacturer(self, manufacturer):
         assert isinstance(manufacturer, str) and len(manufacturer) > 0, "Manufacturer must be a non-empty string"
         self.__manufacturer = manufacturer
@@ -32,13 +36,17 @@ class Tool:
         self.__rpm = rpm
 
 
+<<<<<<< HEAD
+=======
+# Drill class
+>>>>>>> 23aa46c (Describe your changes)
 class Drill(Tool):
     def __init__(self, manufacturer, model, rpm, max_diameter):
         super().__init__(manufacturer, model, rpm)
         assert isinstance(max_diameter, float) and max_diameter > 0, "Max diameter must be a positive float"
         
         self.__max_diameter = max_diameter
-        self.__attached_bit = None  # No bit attached initially
+        self.__attached_bit = None  # No bit attached 
     
     def get_max_diameter(self):
         return self.__max_diameter
@@ -100,10 +108,22 @@ if __name__ == "__main__":
     bit2 = DrillBit(12.0, 2000)  # 12mm diameter2000 RPM limit
     
     cordless_drill = CordlessDrill("Bosch", "Cordless Pro", 1500, 10.0)
+<<<<<<< HEAD
     cordless_drill.attach_bit(bit1) 
     cordless_drill.attach_bit(bit2) 
+=======
+    cordless_drill.attach_bit(bit1)  
+    cordless_drill.attach_bit(bit2)  
+>>>>>>> 23aa46c (Describe your changes)
     
     regular_drill = Drill("Makita", "Drill Master", 1800, 15.0)
+<<<<<<< HEAD
     regular_drill.attach_bit(bit2)
 
     regular_drill.detach_bit() 
+=======
+    regular_drill.attach_bit(bit2)  
+
+    # Detach the bit from the regular drill
+    regular_drill.detach_bit()  
+>>>>>>> 23aa46c (Describe your changes)
